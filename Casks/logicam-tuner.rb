@@ -12,7 +12,7 @@ cask "logicam-tuner" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "LogiCam Tuner.app"
   binary "#{appdir}/LogiCam Tuner.app/Contents/MacOS/logicam"
