@@ -1,6 +1,6 @@
 cask "logicam-tuner" do
-  version "1.0.0"
-  sha256 "8e472457e4286569c73447d060d4fee1b9b62b7f393f06dcba0aeee5642a24b0"
+  version "1.1.0"
+  sha256 "b3099d0e32b9b834a2e2322aa7fe484215c5feee610ca55c2b46bdb604e5c1b5"
 
   url "https://github.com/harsh-gulhane/logicam-tuner/releases/download/v#{version}/LogiCam-Tuner-#{version}.zip"
   name "LogiCam Tuner"
