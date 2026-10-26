@@ -1,0 +1,39 @@
+# Audits, installs and tests every formula in the tap on clean macOS and Linux machines,
+# for pull requests and pushes to main that change a formula.
+name: formulae
+
+on:
+  pull_request:
+    paths: ["Formula/**", ".github/workflows/formulae.yml"]
+  push:
+    branches: [main]
+    paths: ["Formula/**", ".github/workflows/formulae.yml"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: formulae-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    steps:
+      - uses: Homebrew/actions/setup-homebrew@eb02c69dbabdb66ff183c614f4ce7ab3c077592c # main, 2026-10-10
+      - name: Audit, install and test each formula
+        run: |
+          brew trust --tap harsh-gulhane/tap
+          for formula in $(brew tap-info --json harsh-gulhane/tap | jq -r '.[0].formula_names[]'); do
+            echo "::group::$formula"
+            brew audit --strict --online --formula "$formula"
+            brew install --formula "$formula"
+            brew test "$formula"
+            echo "::endgroup::"
+          done

@@ -1,13 +1,18 @@
 # harsh-gulhane/homebrew-tap
 
-Homebrew tap for [LogiCam Tuner](https://github.com/harsh-gulhane/logicam-tuner), an unofficial
-open-source Mac app for the Logitech StreamCam.
+Homebrew tap for [harsh-gulhane](https://github.com/harsh-gulhane)'s open-source tools.
 
-```sh
-brew install --cask harsh-gulhane/tap/logicam-tuner
-```
+| Package | Install | What it is |
+|-|-|-|
+| [agentmemdb](https://github.com/harsh-gulhane/agentmemdb) | `brew install harsh-gulhane/tap/agentmemdb` | Local-first, shared long-term memory for AI agents, served over MCP (macOS and Linux) |
+| [LogiCam Tuner](https://github.com/harsh-gulhane/logicam-tuner) | `brew install --cask harsh-gulhane/tap/logicam-tuner` | Unofficial open-source Mac app for the Logitech StreamCam |
 
-Update with `brew upgrade --cask logicam-tuner`. The app is not notarized by Apple, so allow it once
-in **System Settings → Privacy & Security → Open Anyway** (see the app's README).
+Update with `brew upgrade agentmemdb` or `brew upgrade --cask logicam-tuner`.
 
-The cask is updated by `scripts/release.sh` in the app repository for each release.
+## LogiCam Tuner
+
+The app is not notarized by Apple, so allow it once in **System Settings → Privacy & Security → Open Anyway** (see the app's README).
+
+## Maintenance
+
+Each package's release script updates its entry here: `scripts/update-formula.sh` in agentmemdb and `scripts/release.sh` in LogiCam Tuner. The [formulae workflow](.github/workflows/formulae.yml) audits, installs and tests every formula on macOS and Linux for each change.
